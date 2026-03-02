@@ -3,13 +3,13 @@ import dbConnect, { collectionNameObj } from "@/lib/dbConnect";
 import { ObjectId } from "mongodb";
 import { getServerSession } from "next-auth";
 import { revalidatePath } from "next/cache";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 interface Params {
   params: { id: string };
 }
 
-export const GET = async (req: Request, { params }: Params) => {
+export const GET = async (req: NextRequest, { params }: Params) => {
   try {
     const { id } = await params;
 
@@ -33,7 +33,7 @@ export const GET = async (req: Request, { params }: Params) => {
   }
 };
 
-export const DELETE = async (req: Request, { params }: Params) => {
+export const DELETE = async (req: NextRequest, { params }: Params) => {
   try {
     const { id } = await params;
 

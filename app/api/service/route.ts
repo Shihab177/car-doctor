@@ -1,8 +1,8 @@
 import { authOptions } from "@/lib/authOption";
 import dbConnect, { collectionNameObj } from "@/lib/dbConnect";
 import { getServerSession } from "next-auth";
-import { NextResponse } from "next/server";
-export const GET = async (req : Request)=>{
+import { NextRequest, NextResponse } from "next/server";
+export const GET = async (req : NextRequest)=>{
     const session = await getServerSession(authOptions)
     if(session){
         console.log(session)
@@ -13,7 +13,7 @@ export const GET = async (req : Request)=>{
     }
     
 }
-export const POST = async (req: Request) => {
+export const POST = async (req: NextRequest) => {
   try {
     const body = await req.json();
 

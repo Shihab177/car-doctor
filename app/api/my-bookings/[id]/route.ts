@@ -3,12 +3,12 @@ import dbConnect, { collectionNameObj } from "@/lib/dbConnect";
 import { ObjectId } from "mongodb";
 import { getServerSession } from "next-auth";
 import { revalidatePath } from "next/cache";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 interface Params {
   params: { id: string };
 }
-export const GET = async (req: Request, { params }: Params) => {
+export const GET = async (req: NextRequest, { params }: Params) => {
   try {
     const { id } = await params;
     const bookingCollection = dbConnect(collectionNameObj.bookingCollection);
@@ -31,7 +31,7 @@ export const GET = async (req: Request, { params }: Params) => {
     return NextResponse.json({ success: false, error: error }, { status: 500 });
   }
 };
-export const PATCH = async (req: Request, { params }: Params) => {
+export const PATCH = async (req: NextRequest, { params }: Params) => {
   try {
     const { id } = await params;
     const bookingCollection = dbConnect(collectionNameObj.bookingCollection);
